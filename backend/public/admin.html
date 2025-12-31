@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel – Upload Story</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: auto;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 14px;
+    }
+    textarea {
+      height: 150px;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #357bd8;
+    }
+    .msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📚 Admin Story Upload</h2>
+
+    <input id="title" placeholder="Story Title" />
+    
+    <select id="genre">
+      <option value="">Select Genre</option>
+      <option value="fun">Fun</option>
+      <option value="adventure">Adventure</option>
+    </select>
+
+    <input id="description" placeholder="Short Description" />
+
+    <textarea id="content" placeholder="Full Story Content"></textarea>
+
+    <button onclick="uploadStory()">Publish Story</button>
+
+    <div class="msg" id="message"></div>
+  </div>
+
+  <script>
+    async function uploadStory() {
+      const title = document.getElementById("title").value;
+      const genre = document.getElementById("genre").value;
+      const description = document.getElementById("description").value;
+      const content = document.getElementById("content").value;
+      const messageBox = document.getElementById("message");
+
+      if (!title || !genre || !description || !content) {
+        messageBox.innerText = "❌ All fields are required";
+        messageBox.style.color = "red";
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:3000/api/stories", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-admin-key": "supersecretadmin123"
+          },
+          body: JSON.stringify({
+            title,
+            genre,
+            description,
+            content
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.message);
+        }
+
+        messageBox.innerText = "✅ Story uploaded successfully!";
+        messageBox.style.color = "green";
+
+        // Clear form
+        title.value = "";
+        genre.value = "";
+        description.value = "";
+        content.value = "";
+
+      } catch (error) {
+        messageBox.innerText = "❌ " + error.message;
+        messageBox.style.color = "red";
+      }
+    }
+  </script>
+
+</body>
+</html>
