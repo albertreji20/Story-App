@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel – Upload Story</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: auto;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 14px;
+    }
+    textarea {
+      height: 150px;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #357bd8;
+    }
+    .msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📚 Admin Story Upload</h2>
+    <hr />
+<h3>📚 Uploaded Stories</h3>
+<div id="adminStoryList"></div>
+
+
+    <input id="title" placeholder="Story Title" />
+    
+    <select id="genre">
+      <option value="">Select Genre</option>
+      <option value="fun">Fun</option>
+      <option value="fantasy">Fantasy</option>
+      <option value="thriller">Thriller</option>
+      <option value="sciencefiction">Science Fiction</option>
+    </select>
+
+    <input id="description" placeholder="Short Description" />
+
+    <textarea id="content" placeholder="Full Story Content"></textarea>
+
+    <button onclick="uploadStory()">Publish Story</button>
+
+    <div class="msg" id="message"></div>
+  </div>
+
+  <script>
+  const ADMIN_API = "http://localhost:3000/api/stories";
+  const ADMIN_KEY = "supersecretadmin123";
+
+  async function uploadStory() {
+    const titleInput = document.getElementById("title");
+    const genreInput = document.getElementById("genre");
+    const descriptionInput = document.getElementById("description");
+    const contentInput = document.getElementById("content");
+    const messageBox = document.getElementById("message");
+
+    const title = titleInput.value.trim();
+    const genre = genreInput.value.trim();
+    const description = descriptionInput.value.trim();
+    const content = contentInput.value.trim();
+
+    if (!title || !genre || !description || !content) {
+      messageBox.innerText = "❌ All fields are required";
+      messageBox.style.color = "red";
+      return;
+    }
+
+    try {
+      const res = await fetch(ADMIN_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-key": ADMIN_KEY
+        },
+        body: JSON.stringify({
+          title,
+          genre,
+          description,
+          content
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message);
+      }
+
+      messageBox.innerText = "✅ Story uploaded successfully!";
+      messageBox.style.color = "green";
+
+      // Clear form correctly
+      titleInput.value = "";
+      genreInput.value = "";
+      descriptionInput.value = "";
+      contentInput.value = "";
+
+      // Refresh admin list
+      loadAdminStories();
+
+    } catch (error) {
+      messageBox.innerText = "❌ " + error.message;
+      messageBox.style.color = "red";
+    }
+  }
+
+  async function loadAdminStories() {
+    try {
+      const res = await fetch(ADMIN_API);
+      const stories = await res.json();
+
+      const list = document.getElementById("adminStoryList");
+      list.innerHTML = "";
+
+      if (stories.length === 0) {
+        list.innerHTML = "<p>No stories uploaded yet.</p>";
+        return;
+      }
+
+      stories.forEach(story => {
+        const div = document.createElement("div");
+        div.style.border = "1px solid #ccc";
+        div.style.padding = "10px";
+        div.style.marginBottom = "10px";
+
+        div.innerHTML = `
+          <h4>${story.title}</h4>
+          <p>${story.description}</p>
+          <button onclick="deleteStory('${story._id}')">❌ Delete</button>
+        `;
+
+        list.appendChild(div);
+      });
+    } catch (err) {
+      console.error("Failed to load stories", err);
+    }
+  }
+
+  async function deleteStory(id) {
+    if (!confirm("Are you sure you want to delete this story?")) return;
+
+    try {
+      const res = await fetch(`${ADMIN_API}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "x-admin-key": ADMIN_KEY
+        }
+      });
+
+      const data = await res.json();
+      alert(data.message);
+
+      loadAdminStories(); // refresh list
+    } catch (err) {
+      alert("Failed to delete story");
+    }
+  }
+
+  // Load stories when admin page opens
+  loadAdminStories();
+</script>
+
+
+</body>
+</html>

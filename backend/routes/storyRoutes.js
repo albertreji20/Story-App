@@ -62,4 +62,18 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", adminAuth, async (req, res) => {
+  try {
+    const story = await Story.findByIdAndDelete(req.params.id);
+
+    if (!story) {
+      return res.status(404).json({ message: "Story not found" });
+    }
+
+    res.json({ message: "Story deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;

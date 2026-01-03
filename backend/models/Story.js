@@ -8,7 +8,7 @@ const storySchema = new mongoose.Schema(
     },
     genre: {
       type: String,
-      enum: ["fun", "adventure"],
+      enum: ["fun","fantasy","thriller","sciencefiction"],
       required: true
     },
     description: {
