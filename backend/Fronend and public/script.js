@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3000/api/stories";
+const API_URL = "https://storyapp-backend-jv1y.onrender.com/api/stories";
+
 
 let allStories = [];
 let currentGenre = "all";
