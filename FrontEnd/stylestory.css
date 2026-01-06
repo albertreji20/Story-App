@@ -17,11 +17,12 @@ body {
 
 
 }
-.story-card {
+/*
+.storyrdbox{
 
   width: 90%;
-  max-width: 900px;   /* PC limit */
-  margin: auto;       /* center */
+  max-width: 900px;   
+  margin: auto;      
   padding: 20px;
   box-sizing: border-box;
 
