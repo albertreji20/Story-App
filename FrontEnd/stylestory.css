@@ -18,9 +18,12 @@ body {
 
 }
 .story-card {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 40px;
+
+  width: 90%;
+  max-width: 900px;   /* PC limit */
+  margin: auto;       /* center */
+  padding: 20px;
+  box-sizing: border-box;
 
   background: #020617;
   border-radius: 14px;
