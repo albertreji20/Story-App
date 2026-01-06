@@ -17,29 +17,21 @@ body {
 
 
 }
-
 .storyrdbox {
-  /* Layout */
-  width: 100%;
+  width: 100%;              /* CHANGED */
   max-width: 900px;
-  margin: 40px auto;
+  margin: 20px auto;
 
-  /* Responsive padding */
-  padding: clamp(18px, 4vw, 36px);
+  padding: clamp(18px, 4vw, 36px); /* CHANGED */
   box-sizing: border-box;
 
-  /* Styling */
   background: #020617;
   border-radius: 14px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 
-  /* Text scaling */
-  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  font-size: clamp(1rem, 2.5vw, 1.15rem); /* CHANGED */
   line-height: 1.8;
 
-  /* Safety */
   overflow-wrap: break-word;
 }
-
-
-
+clear
