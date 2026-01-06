@@ -18,19 +18,28 @@ body {
 
 }
 
-.storyrdbox{
+.storyrdbox {
+  /* Layout */
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
 
-  width: 90%;
-  max-width: 900px;   
-  margin: auto;      
-  padding: 20px;
+  /* Responsive padding */
+  padding: clamp(18px, 4vw, 36px);
   box-sizing: border-box;
 
+  /* Styling */
   background: #020617;
   border-radius: 14px;
-  line-height: 1.9;
-  font-size: 1.15rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+
+  /* Text scaling */
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  line-height: 1.8;
+
+  /* Safety */
+  overflow-wrap: break-word;
 }
+
 
 
