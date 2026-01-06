@@ -21,6 +21,7 @@ background-color:#D1D5DB;
   background-color:#111827;
 
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+   margin-bottom: 10px;
 }
 
 .header h1 {
@@ -32,11 +33,13 @@ background-color:#D1D5DB;
   max-width: 400px;
   padding: 10px;
   font-size: 16px;
+ 
 }
 
 /* Genre buttons */
 .genres {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
   margin: 20px 0;
@@ -73,13 +76,4 @@ background-color:#D1D5DB;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.story-card h3 {
-  margin-bottom: 8px;
-}
-
-.story-card p {
-  font-size: 14px;
-  color: #666;
 }
