@@ -18,7 +18,7 @@ background-color:#D1D5DB;
 .header {
   padding: 20px;
   text-align: center;
-  background-color:#111827;
+  background-color:#0F172A;
 
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
    margin-bottom: 10px;
@@ -43,15 +43,17 @@ background-color:#D1D5DB;
   justify-content: center;
   gap: 15px;
   margin: 20px 0;
+  
 }
 
 .genre-btn {
   padding: 10px 20px;
   border: none;
-  background-color: #e0e0e0;
+  background-color:#1C1917;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
+  border-radius: 15px;
+  color: white;
+  
 }
 
 .genre-btn:hover {
