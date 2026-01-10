@@ -17,21 +17,29 @@ body {
 
 
 }
+
 .storyrdbox {
-  width: 100%;              /* CHANGED */
+  width: 100%;              
   max-width: 900px;
   margin: 20px auto;
 
-  padding: clamp(18px, 4vw, 36px); /* CHANGED */
+  padding: clamp(18px, 4vw, 36px); 
   box-sizing: border-box;
 
-  background: #020617;
+
   border-radius: 14px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   display: flex;
 
-  font-size: clamp(1rem, 2.5vw, 1.15rem); /* CHANGED */
+  font-size: clamp(1rem, 2.5vw, 1.15rem); 
   line-height: 1.8;
 
   overflow-wrap: break-word;
+  background-color:#020617;
+  border-radius: 8px;
+  /* x-offset y-offset blur spread color */
+  box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.7);
 }
+  
+
+ 

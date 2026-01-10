@@ -17,7 +17,7 @@ body {
 .header {
   padding: 20px;
   text-align: center;
-background-color: #0f172a;
+background-color:#2D2D2D;
   color: #f9fafb;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   margin-bottom: 20px;
@@ -79,10 +79,15 @@ background-color: #0f172a;
   padding: 18px;
   border-radius: 12px;
   color: #f9fafb;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+  box-shadow: 0 0 20px 5px rgba(0, 212, 255, 0.7);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
+.story-genre{
+  color:#38BDF8;
+}
+.story-desc{
+  color:#8AA7AD
+}
 .story-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
