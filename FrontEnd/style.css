@@ -131,6 +131,7 @@ margin-right: auto;
   font-size: 18px;
   font-family: "Segoe UI", Arial, sans-serif;
   z-index: 9999;
+  flex-direction: column;
 }
 .spinner {
   width: 48px;
