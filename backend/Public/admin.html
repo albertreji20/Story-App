@@ -43,9 +43,9 @@
 <body>
 
   <div class="container">
-    <h2>📚 Admin Story Upload</h2>
+    <h2>Admin Story Upload</h2>
     <hr />
-<h3>📚 Uploaded Stories</h3>
+<h3> Uploaded Stories</h3>
 <div id="adminStoryList"></div>
 
 
@@ -85,7 +85,7 @@
     const content = contentInput.value.trim();
 
     if (!title || !genre || !description || !content) {
-      messageBox.innerText = "❌ All fields are required";
+      messageBox.innerText = " All fields are required";
       messageBox.style.color = "red";
       return;
     }
@@ -111,7 +111,7 @@
         throw new Error(data.message);
       }
 
-      messageBox.innerText = "✅ Story uploaded successfully!";
+      messageBox.innerText = "Story uploaded successfully!";
       messageBox.style.color = "green";
 
       // Clear form correctly

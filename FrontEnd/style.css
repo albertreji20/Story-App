@@ -60,6 +60,9 @@ background-color: #0b0b0b;
   border-radius: 20px;
   color: white;
   transition: all 0.2s ease;
+  box-shadow: 
+  0 0 10px rgba(255, 0, 0, 0.7), /* Bright inner core */
+  0 0 30px rgba(220, 38, 38, 0.4); /* Soft outer glow */
 }
 
 .genre-btn:hover {
@@ -70,7 +73,7 @@ background-color: #0b0b0b;
   background-color: #2563eb;
 }
 
-/* ================= STORY GRID ================= */
+/*STORY GRID  */
 .story-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -137,5 +140,12 @@ background-color: #000000;
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+.loadingT{
+display: flex;
+text-align: center;
+
+
+
 }
 
