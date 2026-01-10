@@ -100,21 +100,25 @@ background-color: #0b0b0b;
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
-.mainfooter{
-
-  
+.mainfooter{  
 background-color: #000000; 
-    padding: 40px 20px;
+    padding: 20px 20px;
     margin-top: auto; 
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1); 
 }
     
     
-.footer-content p {
+.footerp {
     font-size: 0.9rem;
     color: #829799; /* Uses that blue-grey color you liked for the text */
-    
+    padding-top: 10px;
+}
+.footerimg{
+  width: 45px;
+   display: block;
+margin-left: auto;
+margin-right: auto;
 }
 #loading-screen {
   position: fixed;
