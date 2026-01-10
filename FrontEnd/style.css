@@ -116,7 +116,7 @@ background-color: #000000;
 #loading-screen {
   position: fixed;
   inset: 0;
-  background: #0f172a;   /* dark background */
+  background:black;   /* dark background */
   color: #e5e7eb;
   display: flex;
   justify-content: center;
