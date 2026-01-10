@@ -1,52 +1,50 @@
 const API_URL = "https://storyapp-backend-jv1y.onrender.com/api/stories";
 
-
 let allStories = [];
 let currentGenre = "all";
 
-// Fetch stories from backend
+// Fetch stories
 async function fetchStories() {
   try {
     const res = await fetch(API_URL);
     const data = await res.json();
     allStories = data;
-    displayStories(allStories);
+    applyFilters();
   } catch (err) {
     console.error("Failed to fetch stories", err);
   }
 }
 
-// Display stories
+// Render stories
 function displayStories(stories) {
   const storyList = document.getElementById("storyList");
+  const template = document.getElementById("storyCardTemplate");
+
   storyList.innerHTML = "";
 
   if (stories.length === 0) {
-    storyList.innerHTML = "<p>No stories found.</p>";
+    storyList.textContent = "No stories found.";
     return;
   }
 
-  stories.forEach((story) => {
-    const div = document.createElement("div");
-div.className = "story-card";
-div.style.cursor = "pointer";
+  stories.forEach(story => {
+    const clone = template.content.cloneNode(true);
 
-div.onclick = () => {
-  window.location.href = `story.html?id=${story._id}`;
-};
+    clone.querySelector(".story-title").textContent = story.title;
+    clone.querySelector(".story-genre").innerHTML =
+      `<b>Genre:</b> ${story.genre}`;
+    clone.querySelector(".story-desc").textContent =
+      story.description;
 
+    clone.querySelector(".story-card").onclick = () => {
+      window.location.href = `story.html?id=${story._id}`;
+    };
 
-    div.innerHTML = `
-      <h3>${story.title}</h3>
-      <p><b>Genre:</b> ${story.genre}</p>
-      <p>${story.description}</p>
-    `;
-
-    storyList.appendChild(div);
+    storyList.appendChild(clone);
   });
 }
 
-// Genre buttons
+// Genre filter
 document.querySelectorAll(".genre-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     currentGenre = btn.dataset.genre;
@@ -54,12 +52,13 @@ document.querySelectorAll(".genre-btn").forEach(btn => {
   });
 });
 
-// Search input
-document.getElementById("searchInput").addEventListener("input", applyFilters);
+// Search filter
+document.getElementById("searchInput")
+  .addEventListener("input", applyFilters);
 
-// Apply search + genre filters
+// Apply filters
 function applyFilters() {
-  let filtered = allStories;
+  let filtered = [...allStories];
 
   if (currentGenre !== "all") {
     filtered = filtered.filter(
@@ -67,15 +66,13 @@ function applyFilters() {
     );
   }
 
-  const text = document
-    .getElementById("searchInput")
-    .value.toLowerCase();
+  const searchText =
+    document.getElementById("searchInput").value.toLowerCase();
 
-  if (text) {
-    filtered = filtered.filter(
-      story =>
-        story.title.toLowerCase().includes(text) ||
-        story.description.toLowerCase().includes(text)
+  if (searchText) {
+    filtered = filtered.filter(story =>
+      story.title.toLowerCase().includes(searchText) ||
+      story.description.toLowerCase().includes(searchText)
     );
   }
 
