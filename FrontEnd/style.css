@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Arial, sans-serif;
+  
 }
 
 /* PAGE BACKGROUND */
@@ -11,14 +12,18 @@ body {
   background-color: #e5e7eb;   /* light page background */
   color: #111827;
   min-height: 100vh;
+  display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body is at least as tall as the screen */
+    margin: 0; /* Removes default browser spacing */
 }
 
 /* ================= HEADER / NAVBAR ================= */
 .header {
   padding: 20px;
   text-align: center;
-background-color:#2D2D2D;
-  color: #f9fafb;
+background-color: #0b0b0b;
+  color: #8AA7AD;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   margin-bottom: 20px;
 }
@@ -97,7 +102,7 @@ background-color:#2D2D2D;
   
 background-color: #000000; 
     padding: 40px 20px;
-    margin-top: 40px; 
+    margin-top: auto; 
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1); 
 }
@@ -108,3 +113,29 @@ background-color: #000000;
     color: #829799; /* Uses that blue-grey color you liked for the text */
     
 }
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #0f172a;   /* dark background */
+  color: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  z-index: 9999;
+}
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #334155;
+  border-top: 4px solid #38bdf8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+

@@ -81,3 +81,17 @@ function applyFilters() {
 
 // Initial load
 fetchStories();
+
+
+async function wakeServer() {
+  try {
+    await fetch(API_URL);
+  } catch (err) {
+    console.log("Waking server...");
+  } finally {
+    document.getElementById("loading-screen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  }
+}
+
+wakeServer();
