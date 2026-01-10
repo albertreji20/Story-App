@@ -92,3 +92,19 @@ background-color:#2D2D2D;
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
+.mainfooter{
+
+  
+background-color: #000000; 
+    padding: 40px 20px;
+    margin-top: 40px; 
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+}
+    
+    
+.footer-content p {
+    font-size: 0.9rem;
+    color: #829799; /* Uses that blue-grey color you liked for the text */
+    
+}
